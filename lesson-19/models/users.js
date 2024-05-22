@@ -21,3 +21,12 @@ const mongoose = require("mongoose"),
   });
 
 module.exports = mongoose.model("Course", courseSchema);
+module.exports = {
+  index: (req, res, next) => { // DB요청과 응답 
+    User.find()
+      .then(users => {
+        res.locals.users = users;
+        next()
+      })
+  }
+}
